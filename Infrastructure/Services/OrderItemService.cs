@@ -2,11 +2,11 @@ namespace Infrastructure.Services;
 using Dapper;
 using Domain.Models;
 using Infrastructure.Data;
+using Infrastructure.DTOS.Companies;
 using Infrastructure.Interface;
-public class OrderItemService : IOrderItemService
+public class OrderItemService(DataContext context) : IOrderItemService
 {
-    private readonly DataContext context = new();
-
+    
     public async Task<bool> AddOrderItemAsync(OrderItems orderItem)
     {
         using var connection = context.GetConnection();
@@ -87,7 +87,7 @@ public class OrderItemService : IOrderItemService
         return true;
     }
 
-   
+
 }
 
 

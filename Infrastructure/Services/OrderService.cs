@@ -2,10 +2,10 @@ namespace Infrastructure.Services;
 using Dapper;
 using Domain.Models;
 using Infrastructure.Data;
+using Infrastructure.DTOS.Companies;
 using Infrastructure.Interface;
-public class OrderService : IOrderService
+public class OrderService(DataContext context) : IOrderService
 {
-    private readonly DataContext context = new();
 
     public async Task<bool> AddOrderAsync(Orders order)
     {
@@ -87,6 +87,21 @@ public class OrderService : IOrderService
         return true;
     }
 
+    public async Task<List<GetOrderWithCompanyName>> GetAllOrdersWithCompanyNamesAsync()
+    {
+        using var connection = context.GetConnection();
+        connection.Open();
+
+        const string sql = @"select o.Id as OrderId, o.CompanyId, o.OrderDate, c.Name as CompanyName
+                            from orders o
+                            join companies c on o.CompanyId = c.Id
+                            group by o.Id, o.CompanyId, o.OrderDate, c.Name";
+        
+        var result = await connection.QueryAsync<GetOrderWithCompanyName>(sql);
+        return result.ToList();
+    }
+
 }
 
 
+       

@@ -4,12 +4,12 @@ using Dapper;
 
 using Domain.Models;
 using Infrastructure.Data;
+using Infrastructure.DTOS.Companies;
 using Infrastructure.Interface;
-public class CompanyService : ICompanyService
+
+
+public class CompanyService(DataContext context) : ICompanyService
 {
-
-    private readonly DataContext context = new();
-
 
     public async Task<bool> AddCompanyAsync(Companies companie)
     {
@@ -91,5 +91,20 @@ public class CompanyService : ICompanyService
 
         return true;
     }
+
+    public async Task<List<GetCompaniesWithSubscriptionsDto>> GetAllCompaniesWithSubscriptionsAsync()
+    {
+        using var connection = context.GetConnection();
+        connection.Open();
+
+        const string sql = @"select c.Id as CompanyId, c.Name as CompanyName, c.Address as CompanyAddress, count(s.Id) as SubscriptionCount
+                        from companies c
+                        join subscriptions s on c.Id = s.CompanyId
+                        group by c.Id, c.Name, c.Address";
+       
+        var result = await connection.QueryAsync<GetCompaniesWithSubscriptionsDto>(sql);
+        return result.ToList();
+    }
+
 
 }

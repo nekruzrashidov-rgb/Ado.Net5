@@ -3,10 +3,8 @@ using Dapper;
 using Domain.Models;
 using Infrastructure.Data;
 using Infrastructure.Interface;
-public class MenuService : IMenuService
-{
-    private readonly DataContext context = new();
-
+public class MenuService(DataContext context) : IMenuService
+{    
     public async Task<bool> AddMenuAsync(Menus menu)
     {
         using var connection = context.GetConnection();

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-3\\cw\\Domain\\Domain.csproj": {}
+    "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-5\\cw\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-3\\cw\\Domain\\Domain.csproj": {
+    "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-5\\cw\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-3\\cw\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-5\\cw\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-3\\cw\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-5\\cw\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\2026\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-3\\cw\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\2026\\OneDrive\\Desktop\\.Net1\\week1\\Less-5\\cw\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\2026\\AppData\\Roaming\\NuGet\\NuGet.Config",

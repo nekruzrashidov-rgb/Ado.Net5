@@ -4,10 +4,8 @@ using Domain.Models;
 using Infrastructure.Data;
 using Infrastructure.Interface;
 
-public class MenuItemService : IMenuItemService
+public class MenuItemService(DataContext context) : IMenuItemService
 {
-    private readonly DataContext context = new();
-
     public async Task<bool> AddMenuItemAsync(MenuItems menuItem)
     {
         using var connection = context.GetConnection();
