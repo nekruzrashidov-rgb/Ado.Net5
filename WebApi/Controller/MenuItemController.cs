@@ -8,7 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/menuitems")]
 public class MenuItemController
 {
-    private readonly IMenuItemService menuItemService = new MenuItemService();
+    private readonly IMenuItemService menuItemService;
+    
+    public MenuItemController(IMenuItemService menuItemService)
+    {
+        this.menuItemService = menuItemService;
+    }
+
+
     [HttpGet]
     public async Task<List<MenuItems>> GetAllMenuItems()
     {

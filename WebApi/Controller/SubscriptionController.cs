@@ -1,7 +1,7 @@
 namespace WebApi.Controller;
 
 using Domain.Models;
-
+using Infrastructure.DTOS.Companies;
 using Infrastructure.Interface;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +13,24 @@ using Microsoft.AspNetCore.Mvc;
 public class SubscriptionController
 {
 
-    private readonly ISubscriptionService _subscriptionService = new SubscriptionService();
+    private readonly ISubscriptionService _subscriptionService;
+
+    public SubscriptionController(ISubscriptionService subscriptionService)
+    {
+        _subscriptionService = subscriptionService;
+    }
 
     [HttpGet]
-    public async Task<List<Domain.Models.Subscriptions>> GetAllSubscriptions()
+    public async Task<List<Subscriptions>> GetAllSubscriptions()
     {
         return await _subscriptionService.GetAllSubscriptionsAsync();
+    }
+
+
+    [HttpGet("company-order-subscription-count")]
+    public async Task<List<GetCompanyCountOrderCountSubscriptionCount>> GetCompanyOrderSubscriptionCount()
+    {       
+        return await _subscriptionService.GetCompanyCountOrderCountSubscriptionCountAsync();
     }
 
     

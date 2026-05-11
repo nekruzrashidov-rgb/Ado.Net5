@@ -12,10 +12,15 @@ using Microsoft.AspNetCore.Mvc;
 public class OrderItemController
 {
 
-    private readonly IOrderItemService _orderItemService = new OrderItemService();
+    private readonly IOrderItemService _orderItemService;
+    public OrderItemController(IOrderItemService orderItemService)
+    {
+        _orderItemService = orderItemService;
+    }
+
 
     [HttpGet]
-    public async Task<List<Domain.Models.OrderItems>> GetAllOrderItems()
+    public async Task<List<OrderItems>> GetAllOrderItems()
     {
         return await _orderItemService.GetAllOrderItemsAsync();
     }

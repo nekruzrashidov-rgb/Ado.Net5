@@ -1,7 +1,7 @@
 namespace WebApi.Controller;
 
 using Domain.Models;
-
+using Infrastructure.DTOS.Companies;
 using Infrastructure.Interface;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,14 +12,25 @@ using Microsoft.AspNetCore.Mvc;
 public class OrderController
 {
 
-    private readonly IOrderService _orderService = new OrderService();
+    private readonly IOrderService _orderService;
+    
+    public OrderController(IOrderService orderService)
+    {
+        _orderService = orderService;
+    }
 
     [HttpGet]
     public async Task<List<Domain.Models.Orders>> GetAllOrders()
     {
         return await _orderService.GetAllOrdersAsync();
     }
+    
 
+    [HttpGet("with-company-names")]
+    public async Task<List<GetOrderWithCompanyName>> GetAllOrdersWithCompanyNames()
+    {
+        return await _orderService.GetAllOrdersWithCompanyNamesAsync();
+    }
     
     [HttpPost]
     public async Task<bool> AddOrder(Orders order)

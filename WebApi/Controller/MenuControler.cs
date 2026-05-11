@@ -12,7 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 public class MenuController
 {
 
-    private readonly IMenuService _menuService = new MenuService();
+    private readonly IMenuService _menuService;
+
+    public MenuController(IMenuService menuService)
+    {
+        _menuService = menuService;
+    }
 
     [HttpGet]
     public async Task<List<Domain.Models.Menus>> GetAllMenus()

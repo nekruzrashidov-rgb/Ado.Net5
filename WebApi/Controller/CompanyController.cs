@@ -1,7 +1,8 @@
 namespace WebApi.Controller;
 
 using Domain.Models;
-
+using Infrastructure.Data;
+using Infrastructure.DTOS.Companies;
 using Infrastructure.Interface;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,23 @@ using Microsoft.AspNetCore.Mvc;
 public class CompanyController
 {
 
-    private readonly ICompanyService _companyService = new CompanyService();
+    private readonly ICompanyService _companyService;
 
+    public CompanyController(ICompanyService companyService)
+    {
+        _companyService = companyService;
+    }
+    
     [HttpGet]
-    public async Task<List<Domain.Models.Companies>> GetAllCompanies()
+    public async Task<List<Companies>> GetAllCompanies()
     {
         return await _companyService.GetAllCompaniesAsync();
+    }
+   
+    [HttpGet("with-subscriptions")]
+    public async Task<List<GetCompaniesWithSubscriptionsDto>> GetAllCompaniesWithSubscriptions()
+    {
+        return await _companyService.GetAllCompaniesWithSubscriptionsAsync();
     }
 
     

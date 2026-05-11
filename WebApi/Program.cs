@@ -1,6 +1,7 @@
 using WebApi.Controller;
 using Infrastructure.Interface;
 using Infrastructure.Services;
+using Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
 builder.Services.AddScoped<IMenuItemService, MenuItemService>();
 builder.Services.AddScoped<IOrderItemService, OrderItemService>();
-
+builder.Services.AddScoped<DataContext>();
 
 
 var app = builder.Build();
